@@ -1,4 +1,5 @@
-import pandas as pd ; import numpy as np
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
@@ -6,10 +7,10 @@ from sklearn.model_selection import train_test_split
 import pathlib
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.ensemble import RandomForestClassifier
+import seaborn as sns
 import time
 import os
 
-os.chdir('/home/coder/work/ensae-reproductibilite-application')
 TrainingData = pd.read_csv('data.csv')
 
 TrainingData.head()
