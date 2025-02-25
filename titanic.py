@@ -1,13 +1,17 @@
 import matplotlib.pyplot as plt
+import os
 import pandas as pd
 import seaborn as sns
 
+from dotenv import load_dotenv
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+
+load_dotenv()
 
 
 # Données
@@ -77,8 +81,7 @@ preprocessor = ColumnTransformer(
 )
 
 ### Paramètres
-
-n_trees = 20
+n_trees = int(os.getenv("n_trees", 20))
 max_depth = None
 max_features = "sqrt"
 
@@ -86,7 +89,7 @@ max_features = "sqrt"
 pipe = Pipeline(
     [
         ("preprocessor", preprocessor),
-        ("classifier", RandomForestClassifier(n_estimators=20)),
+        ("classifier", RandomForestClassifier(n_estimators=n_trees)),
     ]
 )
 pipe.fit(X_train, y_train)
@@ -97,6 +100,7 @@ rdmf_score_tr = pipe.score(X_train, y_train)
 print(f"{rdmf_score:.1%} de bonnes réponses sur les données de test pour validation")
 from sklearn.metrics import confusion_matrix
 
+print(n_trees)
 print(20 * "-")
 print("matrice de confusion")
 print(confusion_matrix(y_test, pipe.predict(X_test)))
