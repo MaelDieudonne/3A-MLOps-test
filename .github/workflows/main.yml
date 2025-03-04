@@ -25,6 +25,6 @@ jobs:
           pip install pylint
       - name: Lint
         run: |
-          pylint src --fail-under=6
+          pylint --fail-under=6 titanic.py
       - name: Test Python code
-        run: python main.py
+        run: python titanic.py
