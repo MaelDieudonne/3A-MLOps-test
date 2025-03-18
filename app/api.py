@@ -1,10 +1,10 @@
 """A simple API to expose our trained RandomForest model for Tutanic survival."""
 from fastapi import FastAPI
-from joblib import load
+# from joblib import load
 
 import pandas as pd
 
-model = load('model.joblib')
+# model = load('model.joblib')
 
 app = FastAPI(
     title="Prédiction de survie sur le Titanic",
